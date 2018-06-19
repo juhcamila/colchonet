@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   #binding.pry
     respond_to do |format|
       if @user.save
+        Signup.confirm_email(@user).deliver
         format.html { redirect_to @user, notice: 'Cadastro criado com sucesso!' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -26,6 +27,16 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
   end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user, notice: 'cadastro Atualizado com Sucesso!'
+    else
+      render action: :edit
+    end
+  end
+
 
   private
 

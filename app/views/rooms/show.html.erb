@@ -1,19 +1,8 @@
-<p id="notice"><%= notice %></p>
+<ul>
+  <li><%= t '.title', room_title: @room.title %></li>
+  <li><%= t '.location', location: @room.location %></li>
+  <li><%= t '.description', description: @room.description %></li>
+</ul>
+<%= link_to t('.edit'), edit_user_path(@room) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @room.title %>
-</p>
 
-<p>
-  <strong>Location:</strong>
-  <%= @room.location %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @room.description %>
-</p>
-
-<%= link_to 'Edit', edit_room_path(@room) %> |
-<%= link_to 'Back', rooms_path %>
