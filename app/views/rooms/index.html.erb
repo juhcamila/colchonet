@@ -1,31 +1,3 @@
-<p id="notice"><%= notice %></p>
+<h1><%= t '.title' %></h1>
 
-<h1><%= t '.name' %></h1>
-<br/>
-<table>
-  <thead>
-    <tr>
-      <th><%= t '.title' %></th>
-      <th><%= t '.location' %></th>
-      <th><%= t '.description' %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @rooms.each do |room| %>
-      <tr>
-        <td><%= room.title %></td>
-        <td><%= room.location %></td>
-        <td><%= room.description %></td>
-        <td><%= link_to 'Vizualizar', room %></td>
-        <td><%= link_to 'Editar', edit_room_path(room) %></td>
-        <td><%= link_to 'Excluir', room, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'Nova Sala', new_room_path %>
+<%= render @rooms %>

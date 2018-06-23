@@ -10,7 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_19_200128) do
+ActiveRecord::Schema.define(version: 2018_06_23_121207) do
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "room_id"
+    t.integer "points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["room_id"], name: "index_reviews_on_room_id"
+    t.index ["user_id", "room_id"], name: "index_reviews_on_user_id_and_room_id", unique: true
+    t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string "title"
@@ -18,6 +29,9 @@ ActiveRecord::Schema.define(version: 2018_06_19_200128) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "reviews_count"
+    t.index ["user_id"], name: "index_rooms_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
